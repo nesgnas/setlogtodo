@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h1>
+        TODO
+    </h1>
+   
+    <input name="newTodo" type="text">
+    <button onclick="addTodo()"> Add </button>
+    <button onclick="clearInputBox()"> Cancel </button>
+    
+    <div>
+        <label for="filter"> Filter: </label>
+        <select id="filter" onchange="filterTodos()">
+            <option value="done"> DONE </option>
+            <option value="undone"> UNDONE </option>
+            <option value="all"> ALL </option>
+        </select>
+    </div>
+    
+    <ul></ul>
+</body>
+</html>
