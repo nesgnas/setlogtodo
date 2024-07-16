@@ -16,13 +16,11 @@ function addTodo(){
 }
 
 function deleteTodo(id){
-    //xoa object todo
     todos = todos.filter(Todo => Todo.id !== id)
     renderTodos()
 }
 
 function filterTodos(){
-    // lay gia tri cua filter trả về rồi dua vao renderTodos
     const filterTodo = document.getElementById("filter")
     const filterStatus = filterTodo.value
     renderTodos(filterStatus)
@@ -40,9 +38,6 @@ function editTodoText(id){
 }
 
 function toggleTodo(id){
-    // tim object trong todos voi id = id input (for,..) 
-    // cap nhat gia tri isDone nguoc lai voi gia tri hien tai
-    // thuoc tinh la isDone (.isDone = !.isDone)
     for (let index in todos) {
         console.log(todos[index])
         if (id === todos[index].id) {
