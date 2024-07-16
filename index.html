@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
+    <script src="todo.js"></script>
     <h1>
         TODO
     </h1>
    
-    <input name="newTodo" type="text">
+    <input id="newTodo" type="text">
     <button onclick="addTodo()"> Add </button>
     <button onclick="clearInputBox()"> Cancel </button>
     
@@ -18,6 +19,6 @@
         </select>
     </div>
     
-    <ul></ul>
+    <ul id="todoList"> </ul>
 </body>
 </html>
