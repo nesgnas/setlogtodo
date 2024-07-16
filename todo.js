@@ -29,6 +29,13 @@ function filterTodos(){
 }
 
 function editTodoText(id){
+    const todo = todos.find(todo => todo.id === id)
+    if (todo){
+        const newText = prompt('Edit todo:',todo.text)
+        if (newText !== null){
+            todo.text = newText
+        }
+    }
     renderTodos()
 }
 
@@ -45,11 +52,16 @@ function toggleTodo(id){
     renderTodos()
 }
 
-function renderTodos(){
+function renderTodos(filter = 'all'){
     const todoList = document.getElementById('todoList');
     todoList.innerHTML = '';
 
     let filteredTodos = todos;
+    if (filter === 'done') {
+        filteredTodos = todos.filter(todo => todo.isDone)
+    } else if (filter === 'undone') {
+        filteredTodos = todos.filter(todo => !todo.isDone)
+    }
 
 
     filteredTodos.forEach(todo =>{
