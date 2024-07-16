@@ -16,11 +16,16 @@ function addTodo(){
 }
 
 function deleteTodo(id){
+    //xoa object todo
+    todos = todos.filter(Todo => Todo.id !== id)
     renderTodos()
 }
 
 function filterTodos(){
-    renderTodos()
+    // lay gia tri cua filter trả về rồi dua vao renderTodos
+    const filterTodo = document.getElementById("filter")
+    const filterStatus = filterTodo.value
+    renderTodos(filterStatus)
 }
 
 function editTodoText(id){
@@ -63,7 +68,7 @@ function renderTodos(){
         todoList.appendChild(checkbox);
         todoList.appendChild(text);
         todoList.appendChild(editTodoBtn);
-        todoList.appendChild(editTodoBtn);
+        todoList.appendChild(deleteTodoBtn);
         todoList.appendChild(todoItem);
     })
 }
