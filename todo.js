@@ -33,6 +33,15 @@ function editTodoText(id){
 }
 
 function toggleTodo(id){
+    // tim object trong todos voi id = id input (for,..) 
+    // cap nhat gia tri isDone nguoc lai voi gia tri hien tai
+    // thuoc tinh la isDone (.isDone = !.isDone)
+    for (let index in todos) {
+        console.log(todos[index])
+        if (id === todos[index].id) {
+            todos[index].isDone = !todos[index].isDone  
+        }
+    }
     renderTodos()
 }
 
