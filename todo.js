@@ -1,18 +1,25 @@
-var todos = []
+const todos = []
 
-function addTodo(){
+function addTodo() {
     const todoInput = document.getElementById("newTodo")
     const text = todoInput.value
-
+    if (text === "") {
+        return
+    }
 
     const Todo = {
         id: Date.now(),
         text: text,
         isDone: false
     }
-    todos.push(Todo) 
+    todos.push(Todo)
     todoInput.value = ""
     renderTodos()
+}
+
+function clearTodoInput() {
+    const todoInput = document.getElementById("newTodo")
+    todoInput.value = ""
 }
 
 function deleteTodo(id){
@@ -37,17 +44,16 @@ function editTodoText(id){
     renderTodos()
 }
 
-function toggleTodo(id){
+function toggleTodo(id, currentFilter) {
     for (let index in todos) {
-        console.log(todos[index])
         if (id === todos[index].id) {
-            todos[index].isDone = !todos[index].isDone  
+            todos[index].isDone = !todos[index].isDone
         }
     }
-    renderTodos()
+    renderTodos(currentFilter)
 }
 
-function renderTodos(filter = 'all'){
+function renderTodos(filter = 'all') {
     const todoList = document.getElementById('todoList');
     todoList.innerHTML = '';
 
@@ -58,15 +64,14 @@ function renderTodos(filter = 'all'){
         filteredTodos = todos.filter(todo => !todo.isDone)
     }
 
-
-    filteredTodos.forEach(todo =>{
+    filteredTodos.forEach(todo => {
         const todoItem = document.createElement('li');
         todoItem.className = 'todo-item';
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.checked = todo.isDone;
-        checkbox.onchange = ()=> toggleTodo(todo.id)
+        checkbox.onchange = () => toggleTodo(todo.id, filter);
 
         const text = document.createElement('input');
         text.type = 'text';
@@ -81,10 +86,10 @@ function renderTodos(filter = 'all'){
         deleteTodoBtn.textContent = 'Delete';
         deleteTodoBtn.onclick = () => deleteTodo(todo.id);
 
-        todoList.appendChild(checkbox);
-        todoList.appendChild(text);
-        todoList.appendChild(editTodoBtn);
-        todoList.appendChild(deleteTodoBtn);
+        todoItem.appendChild(checkbox);
+        todoItem.appendChild(text);
+        todoItem.appendChild(editTodoBtn);
+        todoItem.appendChild(deleteTodoBtn);
         todoList.appendChild(todoItem);
     })
 }
